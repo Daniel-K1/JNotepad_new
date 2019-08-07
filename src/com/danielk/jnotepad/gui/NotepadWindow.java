@@ -1,0 +1,128 @@
+package com.danielk.jnotepad.gui;
+
+import com.danielk.jnotepad.data.NotepadFile;
+
+import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class NotepadWindow extends JFrame {
+
+    public JTextArea textArea;
+    private JPanel radioPanel;
+    private NotepadFile localFile;
+    private boolean wrapFlag = false;
+    private boolean textUpdated = false;
+
+    public NotepadWindow() {
+
+        super("Notepad - no name");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        textArea = new JTextArea();
+        JScrollPane scroll = new JScrollPane(textArea);
+
+        textArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                updateTextUpdatedStatus(true);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        radioPanel = new JPanel();
+        ButtonGroup bg = new ButtonGroup();
+        JRadioButton radioWin1250Coding = new JRadioButton("Windows-1250", true);
+        radioWin1250Coding.addActionListener(ae -> localFile.openWithEncoding("Cp1250"));
+        JRadioButton radioUtf8Coding = new JRadioButton("UTF-8", false);
+        radioUtf8Coding.addActionListener(ae -> localFile.openWithEncoding("UTF8"));
+        JRadioButton radioUtf16Coding = new JRadioButton("UTF-16", false);
+        radioUtf16Coding.addActionListener(ae -> localFile.openWithEncoding("UTF16"));
+        JRadioButton radioAsciiCoding = new JRadioButton("ASCII", true);
+        radioAsciiCoding.addActionListener(ae -> localFile.openWithEncoding("ASCII"));
+        JRadioButton radioIsoCoding = new JRadioButton("ISO8859-2", false);
+        radioIsoCoding.addActionListener(ae -> localFile.openWithEncoding("ISO8859_2"));
+
+        bg.add(radioWin1250Coding);
+        bg.add(radioUtf8Coding);
+        bg.add(radioUtf16Coding);
+        bg.add(radioAsciiCoding);
+        bg.add(radioIsoCoding);
+
+        radioPanel.add(radioWin1250Coding);
+        radioPanel.add(radioUtf8Coding);
+        radioPanel.add(radioUtf16Coding);
+        radioPanel.add(radioAsciiCoding);
+        radioPanel.add(radioIsoCoding);
+        radioPanel.setVisible(false);
+
+        getContentPane().add(scroll);
+        getContentPane().add(radioPanel, "South");
+        setVisible(true);
+        setSize(650, 550);
+        setLocation(300, 250);
+    }
+
+    void updateTextUpdatedStatus(boolean status) {
+
+        this.textUpdated = status;
+    }
+
+    @Override
+    public void setJMenuBar(JMenuBar menubar) {
+        super.setJMenuBar(menubar);
+        menubar.revalidate();
+    }
+
+    JTextArea getTextArea() {
+        return textArea;
+    }
+
+    void newFile() {
+
+        if (textUpdated) {
+            if (notMistake()) {
+                textArea.setText("");
+                radioPanel.setVisible(false);
+                setTitle("JNotepad - no name");
+            }
+        }
+    }
+
+    boolean notMistake() {
+        int result = JOptionPane.showConfirmDialog(this, "Current text not saved - are you sure?", "Warning",
+                JOptionPane.OK_CANCEL_OPTION);
+        return result != JOptionPane.CANCEL_OPTION && result != JOptionPane.CLOSED_OPTION;
+    }
+
+    void wrapText() {
+
+        wrapFlag = !wrapFlag;
+        textArea.setLineWrap(wrapFlag);
+    }
+
+    void setRadioPanelVisible() {
+
+        radioPanel.setVisible(true);
+    }
+
+    void setLocalFile(NotepadFile localFile) {
+        this.localFile = localFile;
+    }
+
+    public void exitNotepad() {
+        if (!textUpdated || (notMistake())) {
+            System.exit(0);
+        }
+    }
+
+    boolean isTextUpdated() {
+        return textUpdated;
+    }
+}
