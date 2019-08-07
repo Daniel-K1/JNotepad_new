@@ -15,6 +15,7 @@ so any suggestions on new functionalities are more than welcome.
 ## features to be added in next release:
 - word wrap (Menu/Format) - needs to be improved (mechanical implementation, needs to work in line with natural language rules)
 - "save as..." - reopen chooser if user drops overwriting the file (for user convenience)
+- continous save
 - *.txt as default file format during "save as..." operation
 - edit (Menu/Edit: Cut, Copy, Paste) - with both mouse ad keyboard support
 - text navigation (Menu/Edit: find, replace, select all)
