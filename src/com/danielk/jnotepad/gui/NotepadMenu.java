@@ -43,6 +43,7 @@ public class NotepadMenu {
                 .withItem(MenuItemBuilder.menuItem("Print...")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_D)
+                        .withActionListener(ae->this.notepadPrompts.printFile(notepadWindow))
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Exit")

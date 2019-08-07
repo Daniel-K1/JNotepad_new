@@ -4,6 +4,8 @@ import com.danielk.jnotepad.data.NotepadFile;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -105,6 +107,19 @@ public class NotepadPrompts {
 
             } catch (IOException e) {
                 System.out.print("IO Error while saving the file");
+            }
+        }
+    }
+
+    public void printFile(NotepadWindow notepadWindow) {
+
+        PrinterJob pj = PrinterJob.getPrinterJob();
+
+        if(pj.printDialog()){
+            try {
+                pj.print();
+            } catch (PrinterException e) {
+                System.out.println(e);
             }
         }
     }
