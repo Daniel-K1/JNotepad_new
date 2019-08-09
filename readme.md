@@ -29,4 +29,4 @@ so any suggestions on new functionalities are more than welcome.
 - javadoc class descriptions
 
 ## known bugs to be fixed:
--(null)
+- skin radio buttons are not refreshing during skin change - to be fixed in next update
