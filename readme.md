@@ -4,7 +4,7 @@ JNotepad - simple and lightweight notepad. Project evolved from school project. 
 so any suggestions on new functionalities are more than welcome.
 
 ### Main view
-program is divided into 3 sections: Menu Bar, Text Area and panel with radiobuttons in the bottom:
+Program is divided into 3 sections: Menu Bar, Text Area and panel with radiobuttons in the bottom:
 
 ![screen_overview](screens/1_overalCodepages.jpg?raw=true "JNotepad - overview")
 
