@@ -8,29 +8,36 @@ program is divided into 3 sections: Menu Bar, Text Area and panel with radiobutt
 
 ![screen_overview](screens/1_overalCodepages.jpg?raw=true "JNotepad - overview")
 
+### coding changer
+
+A simple set of radio buttons allow user to change text coding __on the fly__, without a need to reopen the file. Nice feature if user is not sure which coding file is using:
+
+![screen_coding_changer](screens/8_codepagesZoomIn.jpg?raw=true "Code Page Changer")
+
+
 ### File Menu:
 
 Functions implemented so far: New, Open, Save, Save s..., Exit. Print - in progress
 
-![screen_overview](screens/2_fileMenu.jpg?raw=true "File Menu")
+![screen_fileMenu](screens/2_fileMenu.jpg?raw=true "File Menu")
 
 ### Open/Save/Save as... File Choosers
 
 Each functionality have default swing FileChooser implemented:
 
-![screen_overview](screens/3_save_asChooser.jpg?raw=true "File Chooser")
+![screen_fileChooser](screens/3_save_asChooser.jpg?raw=true "File Chooser")
 
 ### Word Wrap
 
 In Format File Menu - word wrap feature implemented:
 
-<span style="display:block;text-align:center">![screen_overview](screens/4_formatWordWrap.jpg?raw=true "Word Wrap")</span>
+![screen_wordWrap](screens/4_formatWordWrap.jpg?raw=true "Word Wrap")
 
 ### Skin change
 
 Featured in Swing library - possbility to choose between the following skins:
 
-![screen_overview](screens/5_skins.jpg?raw=true "Skin change menu")
+![screen_skinChange](screens/5_skins.jpg?raw=true "Skin change menu")
 
 ### User warnings
 
@@ -38,12 +45,11 @@ Application have the following warnings implemented:
 
 - File not save warnings - when user wants to exit without saving text area or to open new/existing file before saving text area:
 
-![screen_overview](screens/6_notSavedWarning.jpg?raw=true "File not saved - warning")
+![screen_notSavedWarning](screens/6_notSavedWarning.jpg?raw=true "File not saved - warning")
 
 - File already exist warning - when user wants to save file with the file name that already exists in current folder:
 
-![screen_overview](screens/7_alreadyExistWarning.jpg?raw=true "JNotepad - overview")
-
+![screen_fileExistWarning](screens/7_alreadyExistWarning.jpg?raw=true "JNotepad - overview")
 
 
 ## Features added to v03:
@@ -73,4 +79,4 @@ Application have the following warnings implemented:
 
 ## Known bugs to be fixed:
 - skin radio buttons are not refreshing during skin change - to be fixed in next update
-- skin change doesn't affect application top bar - to be fixed in net update
+- skin change doesn't affect application top bar - to be fixed in next update
