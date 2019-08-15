@@ -1,6 +1,5 @@
 import com.danielk.jnotepad.data.LocalClipboard;
 import com.danielk.jnotepad.data.NotepadFile;
-import com.danielk.jnotepad.gui.FindAndReplaceDialog;
 import com.danielk.jnotepad.gui.NotepadMenu;
 import com.danielk.jnotepad.gui.NotepadPrompts;
 import com.danielk.jnotepad.gui.NotepadWindow;
