@@ -14,7 +14,7 @@ A simple set of radio buttons allow user to change text coding __on the fly__, w
 ![screen_coding_changer](screens/8_codepagesZoomIn.jpg?raw=true "Code Page Changer")
 
 
-## File menu:
+## File menu
 
 All functionalities already implemented: New, Open, Save, Save as..., Print, Exit. "Save" is deactivated until user saves new file first time via "Save as..." or makes changes in a current file.
 
@@ -52,20 +52,18 @@ Available features: word wrap, font changer and text statistics:
 
 In Format File Menu - word wrap feature implemented - line divisions are made on white spaces (words are not being divided):
 
-![screenWordWrap](screens/4_formatWordWrap.jpg?raw=true "Word Wrap")
-
 
 ### Font changer
 
 Dialog window allows user to change font name, style and size. (Third party feature, license in "license" folder).
 
-![screenFontChanger](screens/9_priterDialog.jpg "Printer Dialog")
+![screenFontChanger](screens/14_fontDialog.jpg "Font Dialog")
 
 ### Text statistics
 
 Simple statistics: lines of text, words, characters (with and without whitespaces)
 
-![screenTetStat](screens/13_tetStats.jpg "Tet Stats")
+![screenTetStat](screens/13_textStats.jpg "Text Stats")
 
 
 
