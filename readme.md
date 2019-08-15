@@ -35,7 +35,7 @@ Allows user to choose one of the printers available in the OS:
 
 ## Edit menu
 
-Features implemented so far: basic text operations (Copy, Paste, Cut, Delete). Text operations support actions from and to System Clipboards, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected.
+Features implemented so far: basic text operations (Copy, Paste, Cut, Delete). Text operations support actions from and to System Clipboard, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected).
 
 ![screenEditMenu](screens/10_EditMenu.jpg "Edit Menu")
 
@@ -57,7 +57,7 @@ In Format File Menu - word wrap feature implemented - line divisions are made on
 
 ### Font changer
 
-Dialog window allows user to change Font name, style and size. (Third party feature, license in "license" folder.
+Dialog window allows user to change font name, style and size. (Third party feature, license in "license" folder).
 
 ![screenFontChanger](screens/9_priterDialog.jpg "Printer Dialog")
 
@@ -79,16 +79,16 @@ Featured in Swing library - possbility to choose between the following skins:
 
 ### Context menu
 
-Available on text area, implemented features - basic text operations. As in Edit Menu, operations are active only when it does make sense (e.g. "Paste" is active only if there's some text in OS Clipboard.
+Available in text area, implemented features - basic text operations. As in Edit Menu, operations are active only when it does make sense (e.g. "Paste" is active only if there's some text in OS Clipboard).
 
 ![screenContextMenu](screens/11_contextMenu.jpg "Contet Menu")
 
 
 ### User warnings
 
-Application have the following warnings implemented:
+Application has the following warnings implemented:
 
-- File not save warnings - when user wants to exit without saving text area or to open new/existing file before saving text area:
+- File not saved warnings - when user wants to exit without saving text area or to open new/existing file before saving text area:
 
 ![screen_notSavedWarning](screens/6_notSavedWarning.jpg?raw=true "File not saved - warning")
 
@@ -100,7 +100,7 @@ Application have the following warnings implemented:
 ## History and updates
 
 ### Features added to v04:
-- word wrap improved (words are not being divided durin wrap operations)
+- word wrap improved (words are not being divided during wrap operations)
 - basic text operations (Menu/Edit: Cut, Copy, Paste) - with both mouse ad keyboard support, activation in sync with OS Clipboard
 - font settings dialog in Edit menu
 - text statistics
@@ -115,7 +115,7 @@ Application have the following warnings implemented:
 - method added to check if text area is updated from last save operation - if it does, prompt window is called 
   an user is requested to confirm before he exits program. Method is also requesting for user confirmation 
   if opens a new file without saving current one.
-- global working directory is create after first use of "save" or "open"
+- global working directory is created after first use of "save" or "open"
 
 ## Features to be added in next releases:
 - "save as..." - reopen chooser if user drops overwriting the file (for user convenience)
