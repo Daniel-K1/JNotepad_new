@@ -7,14 +7,14 @@ Program is divided into 3 sections: Menu Bar, Text Area and panel with radiobutt
 
 ![screen_overview](screens/1_overalCodepages.jpg?raw=true "JNotepad - overview")
 
-## coding changer
+## Coding changer
 
 A simple set of radio buttons allow user to change text coding __on the fly__, without a need to reopen the file. Nice feature if user is not sure which coding file is using:
 
 ![screen_coding_changer](screens/8_codepagesZoomIn.jpg?raw=true "Code Page Changer")
 
 
-## File Menu:
+## File menu:
 
 All functionalities already implemented: New, Open, Save, Save as..., Print, Exit. "Save" is deactivated until user saves new file first time via "Save as..." or makes changes in a current file.
 
@@ -33,14 +33,14 @@ Allows user to choose one of the printers available in the OS:
 ![screenPrintDialog](screens/9_printerDialog.jpg "Printer Dialog")
 
 
-## Edit Menu
+## Edit menu
 
 Features implemented so far: basic text operations (Copy, Paste, Cut, Delete). Text operations support actions from and to System Clipboards, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected.
 
 ![screenEditMenu](screens/10_editMenu.jpg "Edit Menu")
 
 
-## Format Menu
+## Format menu
 
 Available features: word wrap, font changer and text statistics:
 
@@ -48,7 +48,7 @@ Available features: word wrap, font changer and text statistics:
 ![screenFormatMenu](screens/12_formatMenu.jpg "Format Menu")
 
 
-### Word Wrap
+### Word wrap
 
 In Format File Menu - word wrap feature implemented - line divisions are made on white spaces (words are not being divided):
 
@@ -69,7 +69,7 @@ Simple statistics: lines of text, words, characters (with and without whitespace
 
 
 
-## Settings Menu
+## Settings menu
 
 Featured in Swing library - possbility to choose between the following skins:
 
@@ -77,7 +77,7 @@ Featured in Swing library - possbility to choose between the following skins:
 
 ## Others
 
-### Contet Menu
+### Context menu
 
 Available on text area, implemented features - basic text operations. As in Edit Menu, operations are active only when it does make sense (e.g. "Paste" is active only if there's some text in OS Clipboard.
 
