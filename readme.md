@@ -37,7 +37,7 @@ Allows user to choose one of the printers available in the OS:
 
 Features implemented so far: basic text operations (Copy, Paste, Cut, Delete). Text operations support actions from and to System Clipboards, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected.
 
-![screenEditMenu](screens/10_editMenu.jpg "Edit Menu")
+![screenEditMenu](screens/10_eDitMenu.jpg "Edit Menu")
 
 
 ## Format menu
