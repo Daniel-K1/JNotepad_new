@@ -1,23 +1,34 @@
 package com.danielk.jnotepad.gui;
 
+import com.danielk.jnotepad.data.LocalClipboard;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.print.PrinterException;
 
 public class NotepadMenu {
 
     private final NotepadPrompts notepadPrompts;
     private final JMenuBar menuBar = new JMenuBar();
     private final JMenu fileMenuItems;
+    private final JMenu editMenuItems;
+    private final LocalClipboard localClipboard;
 
     public static final int SAVE_MENUITEM=2;
 
+    public static final int COPY_MENUITEM=0;
+    public static final int PASTE_MENUITEM=1;
+    public static final int CUT_MENUITEM=2;
+    public static final int DELETE_MENUITEM=3;
 
-    public NotepadMenu(NotepadWindow notepadWindow, NotepadPrompts notepadPrompts) {
+
+    public NotepadMenu(NotepadWindow notepadWindow, NotepadPrompts notepadPrompts, LocalClipboard clipboard) {
 
         this.notepadPrompts=notepadPrompts;
+        this.localClipboard=clipboard;
 
         JMenu fileMenu = new MenuBuilder("File")
-                .withMnemonic(KeyEvent.VK_P)
+                .withMnemonic(KeyEvent.VK_F)
                 .withItem(MenuItemBuilder.menuItem("New")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_N)
@@ -41,9 +52,9 @@ public class NotepadMenu {
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Print...")
-                        .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK))
-                        .withMnemonic(KeyEvent.VK_D)
-                        .withActionListener(ae->this.notepadPrompts.printFile(notepadWindow))
+                        .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK))
+                        .withMnemonic(KeyEvent.VK_P)
+                        .withActionListener(ae-> this.notepadPrompts.printFile(notepadWindow))
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Exit")
@@ -58,14 +69,26 @@ public class NotepadMenu {
                 .withItem(MenuItemBuilder.menuItem("Copy")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_C)
+                        .withActionListener(ae-> LocalClipboard.copy(notepadWindow.getTextArea().getSelectedText()))
+                        .isEnabled(false)
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Paste")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_V)
+                        .withActionListener(ae->LocalClipboard.paste())
+                        .isEnabled(false)
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Cut")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_X)
+                        .withActionListener(ae-> clipboard.cut(notepadWindow.getTextArea().getSelectedText()))
+                        .isEnabled(false)
+                        .build())
+                .withItem(MenuItemBuilder.menuItem("Delete")
+                        .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK))
+                        .withMnemonic(KeyEvent.VK_D)
+                        .withActionListener(ae-> clipboard.delete())
+                        .isEnabled(false)
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Replace...")
@@ -87,6 +110,12 @@ public class NotepadMenu {
                 .withMnemonic(KeyEvent.VK_F)
                 .withItem(MenuItemBuilder.checkbox("Word wrap", false)
                         .withActionListener(ae -> notepadWindow.wrapText())
+                        .build())
+                .withItem(MenuItemBuilder.menuItem("Font...")
+                        .withActionListener(ae-> this.notepadPrompts.setFont(notepadWindow))
+                        .build())
+                .withItem(MenuItemBuilder.menuItem("Text statistics")
+                        .withActionListener(ae -> new TextStatistics(notepadWindow))
                         .build())
                 .build();
 
@@ -132,7 +161,7 @@ public class NotepadMenu {
                         .build())
                 .withItem(MenuItemBuilder.menuItem("About...")
                         .withActionListener(ae ->
-                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.3", "About program...",
+                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.4", "About program...",
                                         JOptionPane.INFORMATION_MESSAGE))
                         .build())
                 .build();
@@ -144,6 +173,7 @@ public class NotepadMenu {
         menuBar.add(helpMenu);
         fileMenu.getItem(2).setEnabled(false);
         fileMenuItems=fileMenu;
+        editMenuItems=editMenu;
     }
 
     public JMenuBar getMenuBar(){
@@ -153,5 +183,10 @@ public class NotepadMenu {
     JMenuItem getFileMenuItem(int pos){
 
         return fileMenuItems.getItem(pos);
+    }
+
+    JMenuItem getEditMenuItem(int pos){
+
+        return editMenuItems.getItem(pos);
     }
 }

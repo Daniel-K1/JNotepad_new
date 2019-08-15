@@ -1,11 +1,12 @@
 package com.danielk.jnotepad.gui;
 
+import com.danielk.jnotepad.data.LocalClipboard;
 import com.danielk.jnotepad.data.NotepadFile;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,9 +17,11 @@ public class NotepadPrompts {
     private NotepadFile localFile;
     private File dir;
     private String fileName;
+    private LocalClipboard clipboard;
 
-    public NotepadPrompts(NotepadFile notepadFile) {
+    public NotepadPrompts(NotepadFile notepadFile, LocalClipboard clipboard) {
         this.localFile = notepadFile;
+        this.clipboard = clipboard;
     }
 
     void openFile(NotepadMenu menu, NotepadWindow notepadWindow) {
@@ -113,14 +116,22 @@ public class NotepadPrompts {
 
     public void printFile(NotepadWindow notepadWindow) {
 
-        PrinterJob pj = PrinterJob.getPrinterJob();
-
-        if(pj.printDialog()){
-            try {
-                pj.print();
-            } catch (PrinterException e) {
-                System.out.println(e);
-            }
+        try{
+            notepadWindow.getTextArea().print();
+        } catch (PrinterException e) {
+            System.out.println("Error while printing: "+e.getMessage());
         }
+
+    }
+
+    public void setFont(NotepadWindow notepadWindow) {
+
+        JFontChooser fontChooser = new JFontChooser();
+        int result = fontChooser.showDialog(notepadWindow.getTextArea());
+        if (result == JFontChooser.OK_OPTION) {
+            Font font = fontChooser.getSelectedFont();
+            notepadWindow.getTextArea().setFont(font);
+        }
+
     }
 }

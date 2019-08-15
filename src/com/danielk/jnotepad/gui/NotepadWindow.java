@@ -1,10 +1,15 @@
 package com.danielk.jnotepad.gui;
 
+import com.danielk.jnotepad.data.LocalClipboard;
 import com.danielk.jnotepad.data.NotepadFile;
 
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.FlavorEvent;
+import java.awt.datatransfer.FlavorListener;
+import java.awt.event.*;
 
 public class NotepadWindow extends JFrame {
 
@@ -13,13 +18,50 @@ public class NotepadWindow extends JFrame {
     private NotepadFile localFile;
     private boolean wrapFlag = false;
     private boolean textUpdated = false;
+    private ContextMenu contextMenu;
+    private NotepadMenu notepadMenu;
+    private LocalClipboard clipboard;
 
     public NotepadWindow() {
 
         super("Notepad - no name");
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         textArea = new JTextArea();
         JScrollPane scroll = new JScrollPane(textArea);
+        contextMenu = new ContextMenu(this);
+
+        textArea.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    contextMenu.getContextMenu().show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        });
+
+        textArea.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                if (e.getDot() != e.getMark()) {
+                    contextMenu.getContextMenu().getComponent(ContextMenu.CUT_POSTION).setEnabled(true);
+                    contextMenu.getContextMenu().getComponent(ContextMenu.COPY_POSTION).setEnabled(true);
+                    contextMenu.getContextMenu().getComponent(ContextMenu.DELETE_POSTION).setEnabled(true);
+                    notepadMenu.getEditMenuItem(NotepadMenu.CUT_MENUITEM).setEnabled(true);
+                    notepadMenu.getEditMenuItem(NotepadMenu.COPY_MENUITEM).setEnabled(true);
+                    notepadMenu.getEditMenuItem(NotepadMenu.DELETE_MENUITEM).setEnabled(true);
+                } else {
+                    contextMenu.getContextMenu().getComponent(ContextMenu.CUT_POSTION).setEnabled(false);
+                    contextMenu.getContextMenu().getComponent(ContextMenu.COPY_POSTION).setEnabled(false);
+                    contextMenu.getContextMenu().getComponent(ContextMenu.DELETE_POSTION).setEnabled(false);
+                    notepadMenu.getEditMenuItem(NotepadMenu.CUT_MENUITEM).setEnabled(false);
+                    notepadMenu.getEditMenuItem(NotepadMenu.COPY_MENUITEM).setEnabled(false);
+                    notepadMenu.getEditMenuItem(NotepadMenu.DELETE_MENUITEM).setEnabled(false);
+                }
+            }
+        });
 
         textArea.addKeyListener(new KeyListener() {
             @Override
@@ -33,6 +75,21 @@ public class NotepadWindow extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent e) {
+            }
+        });
+
+        LocalClipboard.getSystemClipboard().addFlavorListener(new FlavorListener() {
+            @Override
+            public void flavorsChanged(FlavorEvent e) {
+
+                if(LocalClipboard.getSystemClipboard().isDataFlavorAvailable(DataFlavor.stringFlavor)){
+                    contextMenu.getContextMenu().getComponent(ContextMenu.PASTE_POSTION).setEnabled(true);
+                    notepadMenu.getEditMenuItem(NotepadMenu.PASTE_MENUITEM).setEnabled(true);
+                }else {
+                    contextMenu.getContextMenu().getComponent(ContextMenu.PASTE_POSTION).setEnabled(false);
+                    notepadMenu.getEditMenuItem(NotepadMenu.PASTE_MENUITEM).setEnabled(false);
+                }
+
             }
         });
 
@@ -80,7 +137,7 @@ public class NotepadWindow extends JFrame {
         menubar.revalidate();
     }
 
-    JTextArea getTextArea() {
+    public JTextArea getTextArea() {
         return textArea;
     }
 
@@ -88,11 +145,17 @@ public class NotepadWindow extends JFrame {
 
         if (textUpdated) {
             if (notMistake()) {
-                textArea.setText("");
-                radioPanel.setVisible(false);
-                setTitle("JNotepad - no name");
+                clearTetArea();
             }
+        } else{
+            clearTetArea();
         }
+    }
+
+    private void clearTetArea(){
+        textArea.setText("");
+        radioPanel.setVisible(false);
+        setTitle("JNotepad - no name");
     }
 
     boolean notMistake() {
@@ -104,6 +167,7 @@ public class NotepadWindow extends JFrame {
     void wrapText() {
 
         wrapFlag = !wrapFlag;
+        textArea.setWrapStyleWord(true);
         textArea.setLineWrap(wrapFlag);
     }
 
@@ -124,5 +188,19 @@ public class NotepadWindow extends JFrame {
 
     boolean isTextUpdated() {
         return textUpdated;
+    }
+
+    public void addNotepadMenu(NotepadMenu notepadMenu) {
+
+        this.notepadMenu = notepadMenu;
+    }
+
+    public void addClipboard(LocalClipboard clipboard) {
+
+        this.clipboard = clipboard;
+    }
+
+    public void setTextUpdated(boolean b) {
+    textUpdated=b;
     }
 }

@@ -1,4 +1,6 @@
+import com.danielk.jnotepad.data.LocalClipboard;
 import com.danielk.jnotepad.data.NotepadFile;
+import com.danielk.jnotepad.gui.FindAndReplaceDialog;
 import com.danielk.jnotepad.gui.NotepadMenu;
 import com.danielk.jnotepad.gui.NotepadPrompts;
 import com.danielk.jnotepad.gui.NotepadWindow;
@@ -12,8 +14,11 @@ public class Main {
     public static void main(String[] args) {
         NotepadWindow notepadWindow = new NotepadWindow();
         NotepadFile notepadFile = new NotepadFile(notepadWindow);
-        NotepadPrompts notepadPrompts = new NotepadPrompts(notepadFile);
-        NotepadMenu notepadMenu = new NotepadMenu(notepadWindow, notepadPrompts);
+        LocalClipboard clipboard = new LocalClipboard(notepadWindow);
+        NotepadPrompts notepadPrompts = new NotepadPrompts(notepadFile, clipboard);
+        NotepadMenu notepadMenu = new NotepadMenu(notepadWindow, notepadPrompts, clipboard);
+        notepadWindow.addNotepadMenu(notepadMenu);
+        notepadWindow.addClipboard(clipboard);
         notepadWindow.setJMenuBar(notepadMenu.getMenuBar());
 
         notepadWindow.addWindowListener(new WindowAdapter() {
