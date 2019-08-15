@@ -128,7 +128,6 @@ Application has the following warnings implemented:
 - javadoc class descriptions
 - menubuilder pattern in context menu
 - laguage versions (?)
-- license file
 - printing - pages selector, print selected text only feature
 - number of pages to text stats
 - "Find" and "Replac"e feature
