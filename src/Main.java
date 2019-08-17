@@ -3,6 +3,7 @@ import com.danielk.jnotepad.data.NotepadFile;
 import com.danielk.jnotepad.gui.NotepadMenu;
 import com.danielk.jnotepad.gui.NotepadPrompts;
 import com.danielk.jnotepad.gui.NotepadWindow;
+import com.danielk.jnotepad.gui.ReplaceDialog;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
