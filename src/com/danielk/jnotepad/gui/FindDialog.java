@@ -2,51 +2,48 @@ package com.danielk.jnotepad.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
-public class FindDialog extends JFrame {
+class FindDialog extends JFrame {
 
     private JTextArea localTextArea;
-    private JPanel mainPane = new JPanel();
     private JTextField searchField = new JTextField(23);
     private Button find = new Button("Find");
-    private Button cancel = new Button("Cancel");
     private JCheckBox isCaseSensitive = new JCheckBox();
     private JRadioButton isBackwardDirection = new JRadioButton();
     private JRadioButton isForwardDirection = new JRadioButton();
-    private JLabel caseSensitiveLabel = new JLabel("case sensitive");
-    private JLabel isBackwardsLabel = new JLabel("search backwards");
-    private JLabel isForwardLabel = new JLabel("search forward");
-    private ButtonGroup bg = new ButtonGroup();
 
-    private JLabel findLabel = new JLabel("Find: ");
+    private int startIndex = -1;
+    private int endIndex = -1;
 
-    private int startindex=-1;
-    private int endIndex=-1;
-    private int length=0;
+    private String lookFor;
 
-    String lookFor;
-
-    public FindDialog(JTextArea textArea) {
+    FindDialog(JTextArea textArea) {
 
         super("Find");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.localTextArea = textArea;
+        JLabel caseSensitiveLabel = new JLabel("case sensitive");
         caseSensitiveLabel.setLabelFor(isCaseSensitive);
 
         isCaseSensitive.setSelected(true);
+        ButtonGroup bg = new ButtonGroup();
         bg.add(isBackwardDirection);
         bg.add(isForwardDirection);
         bg.setSelected(isForwardDirection.getModel(), true);
 
         find.setSize(50, 30);
+        Button cancel = new Button("Cancel");
         cancel.setSize(50, 30);
 
+        JPanel mainPane = new JPanel();
         GroupLayout layout = new GroupLayout(mainPane);
 
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
+        JLabel isBackwardsLabel = new JLabel("search backwards");
+        JLabel isForwardLabel = new JLabel("search forward");
+        JLabel findLabel = new JLabel("Find: ");
         layout.setHorizontalGroup(
                 layout.createSequentialGroup()
                         .addComponent(findLabel)
@@ -88,61 +85,46 @@ public class FindDialog extends JFrame {
         setLocation(300, 250);
         setResizable(false);
 
-        //searchField.addActionListener(ae2->length=searchField.getText().length());
+        find.addActionListener(ae -> {
 
-        find.addActionListener((ActionEvent ae) -> {
-
-            if(startindex<0){
-                startindex=localTextArea.getSelectionStart();
+            if (startIndex < 0) {
+                startIndex = localTextArea.getSelectionStart();
             }
 
             String base = localTextArea.getText();
-            lookFor=searchField.getText();
-            endIndex=startindex+searchField.getText().length();
+            lookFor = searchField.getText();
+            endIndex = startIndex + searchField.getText().length();
 
-            //String lookFor = searchField.getText();
-
-//            if(endIndex<0){
-//                endIndex=searchField.getText().length();
-//            }
-
-            if(!isCaseSensitive.isSelected()){
-                lookFor=lookFor.toLowerCase();
-                base=base.toLowerCase();
+            if (!isCaseSensitive.isSelected()) {
+                lookFor = lookFor.toLowerCase();
+                base = base.toLowerCase();
             }
 
-//            if(startindex == 0){
-//                endIndex = lookFor.length();
-//            }
-
-            if(isBackwardDirection.isSelected()){
-                findTextBackwards(lookFor,base);
+            if (isBackwardDirection.isSelected()) {
+                findTextBackwards(lookFor, base);
             }
 
-            if(isForwardDirection.isSelected()){
+            if (isForwardDirection.isSelected()) {
                 findTextForward(lookFor, base);
             }
         });
 
-        cancel.addActionListener(ae->{
-            this.dispose();
-        });
-}
-
+        cancel.addActionListener(ae -> this.dispose());
+    }
 
     private void findTextForward(String lookFor, String base) {
 
         while (endIndex <= base.length()) {
-            if (base.substring(startindex, endIndex).equals(lookFor)) {
-                localTextArea.select(startindex, endIndex);
+            if (base.substring(startIndex, endIndex).equals(lookFor)) {
+                localTextArea.select(startIndex, endIndex);
                 if (find.getLabel().equals("Find")) {
                     find.setLabel("Find next");
                 }
-                startindex++;
+                startIndex++;
                 endIndex++;
                 return;
             } else {
-                startindex++;
+                startIndex++;
                 endIndex++;
             }
         }
@@ -150,23 +132,22 @@ public class FindDialog extends JFrame {
 
     private void findTextBackwards(String lookFor, String base) {
 
-        if(endIndex>lookFor.length()){
+        if (endIndex > lookFor.length()) {
             endIndex--;
-            startindex--;
+            startIndex--;
         }
 
-
-        while (startindex >= 0) {
-            if (base.substring(startindex, endIndex).equals(lookFor)) {
-                localTextArea.select(startindex, endIndex);
+        while (startIndex >= 0) {
+            if (base.substring(startIndex, endIndex).equals(lookFor)) {
+                localTextArea.select(startIndex, endIndex);
                 if (find.getLabel().equals("Find")) {
                     find.setLabel("Find next");
                 }
-                startindex--;
+                startIndex--;
                 endIndex--;
                 return;
             } else {
-                startindex--;
+                startIndex--;
                 endIndex--;
             }
         }
