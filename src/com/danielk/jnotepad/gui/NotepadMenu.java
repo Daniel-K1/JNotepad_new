@@ -4,7 +4,6 @@ import com.danielk.jnotepad.data.LocalClipboard;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
 
 public class NotepadMenu {
 
@@ -15,6 +14,7 @@ public class NotepadMenu {
     private final LocalClipboard localClipboard;
 
     public static final int SAVE_MENUITEM=2;
+    public static final int FIND_MENUITEM=5;
 
     public static final int COPY_MENUITEM=0;
     public static final int PASTE_MENUITEM=1;
@@ -91,14 +91,17 @@ public class NotepadMenu {
                         .isEnabled(false)
                         .build())
                 .withSeparator()
+                .withItem(MenuItemBuilder.menuItem("Find...")
+                        .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK))
+                        .withMnemonic(KeyEvent.VK_F)
+                        .isEnabled(false)
+                        .withActionListener(ae->new FindDialog(notepadWindow.getTextArea()))
+                        .build())
                 .withItem(MenuItemBuilder.menuItem("Replace...")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_R)
                         .build())
-                .withItem(MenuItemBuilder.menuItem("Find...")
-                        .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK))
-                        .withMnemonic(KeyEvent.VK_F)
-                        .build())
+
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Select all")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))

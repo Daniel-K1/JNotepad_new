@@ -67,6 +67,8 @@ public class NotepadWindow extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 updateTextUpdatedStatus(true);
+                notepadMenu.getEditMenuItem(NotepadMenu.FIND_MENUITEM).setEnabled(true);
+
             }
 
             @Override
