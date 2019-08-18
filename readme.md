@@ -81,19 +81,19 @@ Simple statistics: lines of text, words, characters (with and without whitespace
 
 ## Settings menu
 
-Availale faetures: hints on/off and skin changer.
+Availale features: hints on/off and skin changer.
 
 ![screenSkinChange](screens/5_skins.jpg?raw=true "Skin change menu")
 
 ### Hints
 
-Blue boxe with text showing when user hover over selected components - turned on by default, can be turned off by unchecking "hints" menu item
+Blue box with text showing when user hovers over selected components - turned on by default, can be turned off by unchecking "hints" menu item
 
 ![screenHints](screens/17_hints.jpg "Hints Checkbox")
 
 ### Skin changer
 
-Featured in Swing library - possbility to choose between standard Java&Swing skins: 
+Featured in Swing library - posibility to choose between standard Java&Swing skins: 
 
 - Windows skin
 - Unix skin
@@ -158,11 +158,11 @@ Application has the following warnings implemented:
 - program should be taking control over the open file (blocked for cut/copy delete from OS shell, unavailable for other apps while opened)
 - helpfile
 - printing - pages selector, print selected text only feature
-- improve find and replace user experience: Pane "phrase not found to be added to find and replace" could be implemented, and the end of base text can be clicked over and over again without any action, if search direction changed have to be "reclicked"
+- improve find and replace user experience: Pane "phrase not found" to be added to "find" and "replace", at the end of base text "find" button can be clicked over and over again without any action, if search direction changed it has to be "reclicked"
 - circular search feature (checkbox)
 - number of pages to text stats
-- javadoc class descriptions
 - JFontChooser update to be consistent with Java 11 (_ replace)
+- javadoc class descriptions
 - language versions (?)
 - continous save (?)
 - welcome graphics before any User action taken (?)
