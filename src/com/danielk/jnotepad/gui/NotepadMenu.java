@@ -15,6 +15,7 @@ public class NotepadMenu {
 
     public static final int SAVE_MENUITEM=2;
     public static final int FIND_MENUITEM=5;
+    public static final int REPLACE_MENUITEM=6;
 
     public static final int COPY_MENUITEM=0;
     public static final int PASTE_MENUITEM=1;
@@ -52,6 +53,7 @@ public class NotepadMenu {
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Print...")
+                        .withToolTip("print text using system printers")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_P)
                         .withActionListener(ae-> this.notepadPrompts.printFile(notepadWindow))
@@ -92,32 +94,40 @@ public class NotepadMenu {
                         .build())
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Find...")
+                        .withToolTip("search for specific word or phrase")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_F)
                         .isEnabled(false)
-                        .withActionListener(ae->new FindDialog(notepadWindow.getTextArea()))
+                        .withActionListener(ae->new FindDialog(notepadWindow,notepadWindow.getTextArea()))
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Replace...")
+                        .withToolTip("find and replace single apearance or all appearances in the text")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_R)
+                        .isEnabled(false)
+                        .withActionListener(ae->new ReplaceDialog(notepadWindow,notepadWindow.getTextArea()))
                         .build())
 
                 .withSeparator()
                 .withItem(MenuItemBuilder.menuItem("Select all")
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK))
                         .withMnemonic(KeyEvent.VK_A)
+                        .withActionListener(ae->notepadWindow.getTextArea().selectAll())
                         .build())
                 .build();
 
         JMenu formatMenu = new MenuBuilder("Format")
                 .withMnemonic(KeyEvent.VK_F)
                 .withItem(MenuItemBuilder.checkbox("Word wrap", false)
+                        .withToolTip("check to fit all lines of text into current window width")
                         .withActionListener(ae -> notepadWindow.wrapText())
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Font...")
+                        .withToolTip("Change font name, type and size")
                         .withActionListener(ae-> this.notepadPrompts.setFont(notepadWindow))
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Text statistics")
+                        .withToolTip("provides the following stats:lines, words and characters (including and excluding whitespaces")
                         .withActionListener(ae -> new TextStatistics(notepadWindow))
                         .build())
                 .build();
@@ -125,6 +135,8 @@ public class NotepadMenu {
         JMenu settingsMenu = new MenuBuilder("Settings")
                 .withMnemonic(KeyEvent.VK_U)
                 .withItem(MenuItemBuilder.checkbox("Hints", true)
+                        .withToolTip("uncheck to turn off popup tips (like this one)")
+                        .withActionListener(ae->ToolTips.showHideTooltips())
                         .build())
                 .withSeparator()
                 .startGroup()
@@ -164,7 +176,7 @@ public class NotepadMenu {
                         .build())
                 .withItem(MenuItemBuilder.menuItem("About...")
                         .withActionListener(ae ->
-                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.4", "About program...",
+                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.5", "About program...",
                                         JOptionPane.INFORMATION_MESSAGE))
                         .build())
                 .build();

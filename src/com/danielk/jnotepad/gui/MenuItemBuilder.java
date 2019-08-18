@@ -47,6 +47,11 @@ class MenuItemBuilder {
         return this;
     }
 
+    MenuItemBuilder withToolTip(String tip) {
+        this.menuItem.setToolTipText(tip);
+        return this;
+    }
+
     MenuItemBuilder withItemListener(ItemListener ie) {
 
         this.menuItem.addItemListener(ie);

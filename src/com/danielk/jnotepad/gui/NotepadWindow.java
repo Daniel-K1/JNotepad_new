@@ -68,6 +68,7 @@ public class NotepadWindow extends JFrame {
             public void keyTyped(KeyEvent e) {
                 updateTextUpdatedStatus(true);
                 notepadMenu.getEditMenuItem(NotepadMenu.FIND_MENUITEM).setEnabled(true);
+                notepadMenu.getEditMenuItem(NotepadMenu.REPLACE_MENUITEM).setEnabled(true);
 
             }
 
@@ -91,7 +92,6 @@ public class NotepadWindow extends JFrame {
                     contextMenu.getContextMenu().getComponent(ContextMenu.PASTE_POSTION).setEnabled(false);
                     notepadMenu.getEditMenuItem(NotepadMenu.PASTE_MENUITEM).setEnabled(false);
                 }
-
             }
         });
 

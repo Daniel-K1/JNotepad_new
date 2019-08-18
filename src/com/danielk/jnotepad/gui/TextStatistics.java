@@ -9,7 +9,7 @@ class TextStatistics {
 
         JOptionPane.showMessageDialog(notepadWindow,
                 "Lines: " + notepadWindow.getTextArea().getLineCount()
-                        + "\n words: " + getWords(notepadWindow.getTextArea().getText())
+                        + "\nwords: " + getWords(notepadWindow.getTextArea().getText())
                         + "\ncharactes (incl. whitespaces): " + notepadWindow.getTextArea().getText().length()
                         + "\ncharacters (excl. whitespaes): " + getCharactersNoWhitespaces(notepadWindow.getTextArea().getText()),
                 "Text statistics",

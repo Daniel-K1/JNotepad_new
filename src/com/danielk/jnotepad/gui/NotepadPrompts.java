@@ -43,6 +43,7 @@ public class NotepadPrompts {
                 dir = new File(chooser.getCurrentDirectory().getAbsolutePath());
                 menu.getFileMenuItem(NotepadMenu.SAVE_MENUITEM).setEnabled(true);
                 menu.getEditMenuItem(NotepadMenu.FIND_MENUITEM).setEnabled(true);
+                menu.getEditMenuItem(NotepadMenu.REPLACE_MENUITEM).setEnabled(true);
             }
         }
     }

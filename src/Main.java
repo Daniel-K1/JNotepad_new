@@ -21,8 +21,6 @@ public class Main {
         notepadWindow.addClipboard(clipboard);
         notepadWindow.setJMenuBar(notepadMenu.getMenuBar());
 
-        new ReplaceDialog(notepadWindow.getTextArea());
-
         notepadWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -30,5 +28,7 @@ public class Main {
                 notepadWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             }
         });
+
+        //ToolTipManager.sharedInstance().setEnabled(false);
     }
 }
