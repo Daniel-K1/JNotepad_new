@@ -85,6 +85,12 @@ Availale faetures: hints on/off and skin changer.
 
 ![screenSkinChange](screens/5_skins.jpg?raw=true "Skin change menu")
 
+### Hints
+
+Blue boxe with text showing when user hover over selected components - turned on by default, can be turned off by unchecking "hints" menu item
+
+![screenHints](screens/17_hints.jpg "Hints Checkbox")
+
 ### Skin changer
 
 Featured in Swing library - possbility to choose between standard Java&Swing skins: 
@@ -92,14 +98,8 @@ Featured in Swing library - possbility to choose between standard Java&Swing ski
 - Windows skin
 - Unix skin
 - Java skins:
-  -Metal skin
-  -Ocean skin (Default application skin)
-
-### hints
-
-Blue boxe with text showing when user hover over selected components - turned on by default, can be turned off by unchecking "hints" menu item
-
-![screenHints](screens/17_hints.jpg "Hints Checkbox")
+  - Metal skin
+  - Ocean skin (default application skin)
 
 
 ## Others
@@ -126,6 +126,13 @@ Application has the following warnings implemented:
 
 ## History and updates
 
+### Features added to v05:
+- Find feature (Edit menu->Find) with dedicated dialog window
+- Replace feature (Edit menu0-> replace) with dedicated dialog window
+- Select all feature from min menu (Edit-> select all)
+- hints for the most critical features: find and replace dialogs components, selected menu item components: hints, wrap text, font, text stats, print, find, replace. 
+- hint management - possibility to turn on/off all hints (Settings->hints) 
+
 ### Features added to v04:
 - word wrap improved (words are not being divided during wrap operations)
 - basic text operations (Menu/Edit: Cut, Copy, Paste) - with both mouse ad keyboard support, activation in sync with OS Clipboard
@@ -133,7 +140,6 @@ Application has the following warnings implemented:
 - text statistics
 - context menu with basic text operations, activation in sync wit OS Clipboard
 - printing dialog and functionality via OS Print
-
 
 ## Features added to v03:
 - architecture improved (classes regrouped into three packages to reflect MVC architecture)
@@ -145,23 +151,25 @@ Application has the following warnings implemented:
 - global working directory is created after first use of "save" or "open"
 
 ## Features to be added in next releases:
-- "save as..." - reopen chooser if user drops overwriting the file (for user convenience)
-- continous save (?)
-- \*.txt as default file format during "save as..." operation
--  select all from menu
-- program should be taking control over the open file (blocked for cut/copy delete from OS shell, unavailable for other apps while opened)
-- hints to be added
-- helpfile to be added
-- welcome graphics before any User action taken (?)
 - JUnit tests
-- javadoc class descriptions
-- menubuilder pattern in context menu
-- laguage versions (?)
+- code refactor (incl. menubuilder pattern in contex tmenu) so the code is in line with Clean Code rules
+- "save as..." - reopen chooser if user drops overwriting the file (for user convenience)
+- \*.txt as default file format during "save as..." operation
+- program should be taking control over the open file (blocked for cut/copy delete from OS shell, unavailable for other apps while opened)
+- helpfile
 - printing - pages selector, print selected text only feature
+- improve find and replace user experience: Pane "phrase not found to be added to find and replace" could be implemented, and the end of base text can be clicked over and over again without any action, if search direction changed have to be "reclicked"
+- circular search feature (checkbox)
 - number of pages to text stats
-- "Find" and "Replac"e feature
+- javadoc class descriptions
+- JFontChooser update to be consistent with Java 11 (_ replace)
+- language versions (?)
+- continous save (?)
+- welcome graphics before any User action taken (?)
 
 ## Known bugs to be fixed asap:
 - skin radio buttons are not refreshing during skin change
 - skin change doesn't affect application top bar - to be fixed in next update
 - while pasting code to text area - ClassNotFoundException
+- "replace all" hangs application if both TextFields in Dialog are empty
+- when start searching from the very end of the file exceptin is thrown
