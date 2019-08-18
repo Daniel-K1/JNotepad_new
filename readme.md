@@ -2,10 +2,12 @@
 
 JNotepad - simple and lightweight notepad. Project evolved from school project. I'm stil developing it despite it's using quite old Swing UI, so any suggestions on new functionalities are more than welcome. Current version: 0.4
 
+
 ## Main view
 Program is divided into 3 sections: Menu Bar, Text Area and panel with radiobuttons in the bottom:
 
 ![screen_overview](screens/1_overalCodepages.jpg?raw=true "JNotepad - overview")
+
 
 ## Coding changer
 
@@ -16,7 +18,7 @@ A simple set of radio buttons allow user to change text coding __on the fly__, w
 
 ## File menu
 
-All functionalities already implemented: New, Open, Save, Save as..., Print, Exit. "Save" is deactivated until user saves new file first time via "Save as..." or makes changes in a current file.
+All features already implemented: New, Open, Save, Save as..., Print, Exit. "Save" is deactivated until user saves new file first time via "Save as..." or makes changes in a current file.
 
 ![screen_fileMenu](screens/2_fileMenu.jpg?raw=true "File Menu")
 
@@ -35,9 +37,22 @@ Allows user to choose one of the printers available in the OS:
 
 ## Edit menu
 
-Features implemented so far: basic text operations (Copy, Paste, Cut, Delete). Text operations support actions from and to System Clipboard, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected).
+All seatures already implemented: basic text operations (Copy, Paste, Cut, Delete), find text, replace text and select all.
+Text operations support actions from and to System Clipboard, so text is availale to and from other applications. All basic text operations are active only if it does make sense (Paste - activated where there's a text available in system Clipboard, cut, copy and delete - when text is selected).
 
 ![screenEditMenu](screens/10_EditMenu.jpg "Edit Menu")
+
+### Find dialog
+
+User can search for text both forward (from cursor to the end of file) ad backwards (from cursor to the beginning of the file). Search direction can be changed any moment without resetting dialog window. Case sensitivity can be turned on and off on the fly as well by checking dedicated checkbox.
+
+![screenFindDialog](screens/15_findDialog.jpg "Find Dialog")
+
+### Replace dialog
+
+After searching or the text from "Find" text area (same functionality as in find dialog) user can replace text found (selected in main window) with text typed in "replace" text area". It can be done cae by case by "Replace button" or all at once by "Replace all" button - in this case cursor position doesn't matter, all occurences will be replaced.
+
+![screenReplaceDialog](screens/16_replaceDialog.jpg "Replace Dialog")
 
 
 ## Format menu
@@ -47,11 +62,9 @@ Available features: word wrap, font changer and text statistics:
 
 ![screenFormatMenu](screens/12_formatMenu.jpg "Format Menu")
 
-
 ### Word wrap
 
-In Format File Menu - word wrap feature implemented - line divisions are made on white spaces (words are not being divided):
-
+In Format File Menu - word wrap feature implemented - line divisions are made on white spaces (words are not being divided)
 
 ### Font changer
 
@@ -66,12 +79,28 @@ Simple statistics: lines of text, words, characters (with and without whitespace
 ![screenTetStat](screens/13_textStats.jpg "Text Stats")
 
 
-
 ## Settings menu
 
-Featured in Swing library - possbility to choose between the following skins:
+Availale faetures: hints on/off and skin changer.
 
-![screen_skinChange](screens/5_skins.jpg?raw=true "Skin change menu")
+![screenSkinChange](screens/5_skins.jpg?raw=true "Skin change menu")
+
+### Skin changer
+
+Featured in Swing library - possbility to choose between standard Java&Swing skins: 
+
+- Windows skin
+- Unix skin
+- Java skins:
+  -Metal skin
+  -Ocean skin (Default application skin)
+
+### hints
+
+Blue boxe with text showing when user hover over selected components - turned on by default, can be turned off by unchecking "hints" menu item
+
+![screenHints](screens/17_hints.jpg "Hints Checkbox")
+
 
 ## Others
 
