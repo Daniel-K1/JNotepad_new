@@ -21,6 +21,8 @@ public class Main {
         notepadWindow.addClipboard(clipboard);
         notepadWindow.setJMenuBar(notepadMenu.getMenuBar());
 
+        new ReplaceDialog(notepadWindow.getTextArea());
+
         notepadWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
