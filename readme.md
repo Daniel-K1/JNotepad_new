@@ -168,8 +168,6 @@ Application has the following warnings implemented:
 - welcome graphics before any User action taken (?)
 
 ## Known bugs to be fixed asap:
-- skin radio buttons are not refreshing during skin change
-- skin change doesn't affect application top bar - to be fixed in next update
-- while pasting code to text area - ClassNotFoundException
-- "replace all" hangs application if both TextFields in Dialog are empty
-- when start searching from the very end of the file exceptin is thrown
+- unix skin change doesn't show title bar properly, default skin to be corrected (also in doc)
+- while pasting code from IntelliJ to text area - ClassNotFoundException - seems to be IntelliJ bug, should ave no influence on application, please refer to:
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/360002951399-ClassCastException-related-to-IDEA-specific-classes-when-running-outside-of-IntelliJ

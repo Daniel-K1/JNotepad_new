@@ -139,9 +139,11 @@ class FindDialog extends JDialog {
 
     private void findTextBackwards(String lookFor, String base) {
 
-        if (endIndex > lookFor.length()) {
-            endIndex--;
-            startIndex--;
+        if (endIndex > base.length()) {
+            do {
+                endIndex--;
+                startIndex--;
+            } while(endIndex!=base.length());
         }
 
         while (startIndex >= 0) {

@@ -1,12 +1,10 @@
 package com.danielk.jnotepad.gui;
 
 import javax.swing.*;
-import java.util.Optional;
 
-public class MenuBuilder {
+class MenuBuilder {
 
     private final JMenu menu;
-    private ButtonGroup buttonGroup;
 
     MenuBuilder(String menuLabel) {
 
@@ -16,23 +14,6 @@ public class MenuBuilder {
     MenuBuilder withItem(JMenuItem item) {
 
         this.menu.add(item);
-        return this;
-    }
-/*
-methods withCheckboxItem and withRadiobuttonItem to be used in next updates
- */
-
-
-    MenuBuilder withCheckboxItem(JCheckBoxMenuItem item) {
-
-        this.menu.add(item);
-        return this;
-    }
-
-    public MenuBuilder withRadiobuttonItem(JRadioButtonMenuItem item) {
-
-        this.menu.add(item);
-        Optional.ofNullable(buttonGroup).ifPresent(bg -> bg.add(item));
         return this;
     }
 
@@ -45,19 +26,6 @@ methods withCheckboxItem and withRadiobuttonItem to be used in next updates
     MenuBuilder withSeparator() {
 
         menu.addSeparator();
-        return this;
-    }
-
-    MenuBuilder startGroup() {
-
-        buttonGroup = new ButtonGroup();
-        return this;
-
-    }
-
-    MenuBuilder endGroup() {
-
-        buttonGroup = null;
         return this;
     }
 

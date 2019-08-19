@@ -27,6 +27,7 @@ public class NotepadMenu {
 
         this.notepadPrompts=notepadPrompts;
         this.localClipboard=clipboard;
+        ButtonGroup bg=new ButtonGroup();
 
         JMenu fileMenu = new MenuBuilder("File")
                 .withMnemonic(KeyEvent.VK_F)
@@ -139,32 +140,34 @@ public class NotepadMenu {
                         .withActionListener(ae->ToolTips.showHideTooltips())
                         .build())
                 .withSeparator()
-                .startGroup()
                 .withItem(MenuItemBuilder.radioButton("Windows skin", true)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.WINDOWS, notepadWindow);
                         })
+                        .addToGroup(bg)
                         .build())
                 .withItem(MenuItemBuilder.radioButton("Unix Skin", false)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.UNIX, notepadWindow);
                         })
+                        .addToGroup(bg)
                         .build())
                 .withItem(MenuItemBuilder.radioButton("Java skin - Metal Theme", false)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.JAVAMETAL, notepadWindow);
                         })
+                        .addToGroup(bg)
                         .build())
                 .withItem(MenuItemBuilder.radioButton("Java skin - Ocean Theme", false)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.JAVAOCEAN, notepadWindow);
                         })
+                        .addToGroup(bg)
                         .build())
-                .endGroup()
                 .build();
 
         JMenu helpMenu = new MenuBuilder("Help")

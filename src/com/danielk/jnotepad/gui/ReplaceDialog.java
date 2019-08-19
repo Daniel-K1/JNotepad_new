@@ -149,7 +149,7 @@ public class ReplaceDialog extends JDialog {
             startIndex=0;
             endIndex=searchField.getText().length();
 
-            while (endIndex<=base.length()){
+            while (endIndex<=base.length() && !replace.equals("") && !lookFor.equals("")){
                 findTextForward(lookFor, base);
                 localTextArea.replaceSelection(replace);
                 startIndex=localTextArea.getSelectionEnd();

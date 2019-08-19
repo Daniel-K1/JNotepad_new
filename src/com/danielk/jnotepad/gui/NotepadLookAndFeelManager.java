@@ -18,28 +18,51 @@ class NotepadLookAndFeelManager {
 
         try {
             switch (lookAndFeelType) {
-                case WINDOWS:
+                case WINDOWS:       //SWITCH TO WINDOWS WORKS FINE
+                    notepadWindow.dispose();
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    SwingUtilities.updateComponentTreeUI(notepadWindow.getRootPane());
+                    notepadWindow.setUndecorated(false);
+                    notepadWindow.setVisible(true);
                     break;
 
-                case UNIX:
+                case UNIX:      //SWITCH DOESN't WORK - TITLE BAR FROM DIFFERENT LAF
+                    notepadWindow.dispose();
                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+                    notepadWindow.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+                    SwingUtilities.updateComponentTreeUI(notepadWindow.getRootPane());
+                    JFrame.setDefaultLookAndFeelDecorated(true);
+
+                    notepadWindow.setUndecorated(true);
+                    notepadWindow.setVisible(true);
                     break;
 
-                case JAVAMETAL: {
+                case JAVAMETAL: { //WORKS FINE
+
+                    notepadWindow.dispose();
                     MetalLookAndFeel.setCurrentTheme(new DefaultMetalTheme());
                     UIManager.setLookAndFeel(new MetalLookAndFeel());
+                    notepadWindow.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+                    SwingUtilities.updateComponentTreeUI(notepadWindow.getRootPane());
+                    notepadWindow.setUndecorated(true);
+                    notepadWindow.setVisible(true);
                 }
                 break;
 
-                case JAVAOCEAN: {
+                case JAVAOCEAN: {       //WORKS FINE
+
+                    notepadWindow.dispose();
                     MetalLookAndFeel.setCurrentTheme(new OceanTheme());
                     UIManager.setLookAndFeel(new MetalLookAndFeel());
+                    notepadWindow.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+                    SwingUtilities.updateComponentTreeUI(notepadWindow.getRootPane());
+                    notepadWindow.setUndecorated(true);
+                    notepadWindow.setVisible(true);
                 }
                 break;
             }
 
-            SwingUtilities.updateComponentTreeUI(notepadWindow);
+            //SwingUtilities.updateComponentTreeUI(notepadWindow);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());

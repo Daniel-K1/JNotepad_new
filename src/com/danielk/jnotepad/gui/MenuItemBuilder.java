@@ -66,4 +66,10 @@ class MenuItemBuilder {
     JMenuItem build() {
         return this.menuItem;
     }
+
+    MenuItemBuilder addToGroup(ButtonGroup bg) {
+
+        bg.add(this.menuItem);
+    return this;
+    }
 }
