@@ -173,4 +173,5 @@ https://bugs.openjdk.java.net/browse/JDK-8218637
 
 ## Known bugs to be fixed asap:
 - while pasting code from IntelliJ to text area - ClassNotFoundException - seems to be IntelliJ bug, should ave no influence on application, please refer to:
+
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/360002951399-ClassCastException-related-to-IDEA-specific-classes-when-running-outside-of-IntelliJ
