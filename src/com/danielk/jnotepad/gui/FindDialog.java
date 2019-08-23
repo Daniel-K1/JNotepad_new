@@ -161,4 +161,5 @@ class FindDialog extends JDialog {
             }
         }
     }
+
 }

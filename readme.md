@@ -96,7 +96,6 @@ Blue box with text showing when user hovers over selected components - turned on
 Featured in Swing library - posibility to choose between standard Java&Swing skins: 
 
 - Windows skin
-- Unix skin
 - Java skins:
   - Metal skin
   - Ocean skin (default application skin)
@@ -125,6 +124,12 @@ Application has the following warnings implemented:
 
 
 ## History and updates
+
+### Features added to v05.1:
+- Skin change bug corrected - now all available skins shows up as they should
+- Unix Look and Feel removed from skin change feature. The reason is that Unix ("motif") Lok ad Feel will be deprecated from OPen JDK 13:
+https://bugs.openjdk.java.net/browse/JDK-8218637
+
 
 ### Features added to v05:
 - Find feature (Edit menu->Find) with dedicated dialog window
@@ -168,6 +173,5 @@ Application has the following warnings implemented:
 - welcome graphics before any User action taken (?)
 
 ## Known bugs to be fixed asap:
-- unix skin change doesn't show title bar properly, default skin to be corrected (also in doc)
 - while pasting code from IntelliJ to text area - ClassNotFoundException - seems to be IntelliJ bug, should ave no influence on application, please refer to:
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/360002951399-ClassCastException-related-to-IDEA-specific-classes-when-running-outside-of-IntelliJ

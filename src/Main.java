@@ -28,7 +28,5 @@ public class Main {
                 notepadWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             }
         });
-
-        //ToolTipManager.sharedInstance().setEnabled(false);
     }
 }

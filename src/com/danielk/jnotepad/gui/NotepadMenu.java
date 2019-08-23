@@ -140,17 +140,10 @@ public class NotepadMenu {
                         .withActionListener(ae->ToolTips.showHideTooltips())
                         .build())
                 .withSeparator()
-                .withItem(MenuItemBuilder.radioButton("Windows skin", true)
+                .withItem(MenuItemBuilder.radioButton("Windows skin", false)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.WINDOWS, notepadWindow);
-                        })
-                        .addToGroup(bg)
-                        .build())
-                .withItem(MenuItemBuilder.radioButton("Unix Skin", false)
-                        .withItemListener(ie -> {
-                            if (ie.getStateChange() == ItemEvent.SELECTED)
-                                NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.UNIX, notepadWindow);
                         })
                         .addToGroup(bg)
                         .build())
@@ -161,7 +154,7 @@ public class NotepadMenu {
                         })
                         .addToGroup(bg)
                         .build())
-                .withItem(MenuItemBuilder.radioButton("Java skin - Ocean Theme", false)
+                .withItem(MenuItemBuilder.radioButton("Java skin - Ocean Theme", true)
                         .withItemListener(ie -> {
                             if (ie.getStateChange() == ItemEvent.SELECTED)
                                 NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.JAVAOCEAN, notepadWindow);
@@ -179,7 +172,7 @@ public class NotepadMenu {
                         .build())
                 .withItem(MenuItemBuilder.menuItem("About...")
                         .withActionListener(ae ->
-                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.5", "About program...",
+                                JOptionPane.showMessageDialog(notepadWindow, "Notepad Java Swing v.0.5.1", "About program...",
                                         JOptionPane.INFORMATION_MESSAGE))
                         .build())
                 .build();

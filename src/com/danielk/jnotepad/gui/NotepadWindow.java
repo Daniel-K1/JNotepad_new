@@ -121,6 +121,7 @@ public class NotepadWindow extends JFrame {
         radioPanel.add(radioIsoCoding);
         radioPanel.setVisible(false);
 
+        NotepadLookAndFeelManager.setLookAndFeel(NotepadLookAndFeelManager.LookAndFeelTypes.JAVAOCEAN, this);
         getContentPane().add(scroll);
         getContentPane().add(radioPanel, "South");
         setVisible(true);
