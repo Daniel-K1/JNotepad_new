@@ -168,7 +168,7 @@ public class NotepadMenu {
                 .withItem(MenuItemBuilder.menuItem("Help topics")
                         .withMnemonic(KeyEvent.VK_F1)
                         .withAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_DOWN_MASK))
-                        .withImageIcon("question_mark.gif")
+                        .withImageIcon("./src/main/resources/question_mark.gif")
                         .build())
                 .withItem(MenuItemBuilder.menuItem("About...")
                         .withActionListener(ae ->
