@@ -166,7 +166,6 @@ https://bugs.openjdk.java.net/browse/JDK-8218637
 - improve find and replace user experience: Pane "phrase not found" to be added to "find" and "replace", at the end of base text "find" button can be clicked over and over again without any action, if search direction changed it has to be "reclicked"
 - circular search feature (checkbox)
 - number of pages to text stats
-- JFontChooser update to be consistent with Java 11 (_ replace)
 - javadoc class descriptions
 - language versions (?)
 - continous save (?)
