@@ -1,7 +1,7 @@
 package com.danielk.jnotepad.gui;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.DefaultMetalTheme;
@@ -16,7 +16,7 @@ class NotepadLookAndFeelManager {
         JAVAOCEAN
     }
 
-    private final static Logger LOG= LogManager.getLogger();
+    private final static Logger LOG = LoggerFactory.getLogger(NotepadLookAndFeelManager.class);
 
     static void setLookAndFeel(LookAndFeelTypes lookAndFeelType, NotepadWindow notepadWindow) {
 

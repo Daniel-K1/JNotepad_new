@@ -1,8 +1,8 @@
 package com.danielk.jnotepad.data;
 
 import com.danielk.jnotepad.gui.NotepadWindow;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -10,7 +10,7 @@ public class NotepadFile {
 
     private File selectedFile;
     private final NotepadWindow notepadWindow;
-    private final static Logger LOG= LogManager.getLogger();
+    private final static Logger LOG = LoggerFactory.getLogger(NotepadFile.class);
 
     public NotepadFile(NotepadWindow notepadWindow) {
         this.notepadWindow = notepadWindow;

@@ -1,8 +1,9 @@
 package com.danielk.jnotepad.data;
 
 import com.danielk.jnotepad.gui.NotepadWindow;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -10,10 +11,9 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.*;
 import java.awt.event.KeyEvent;
 
-
 public class LocalClipboard {
 
-    private final static Logger LOG= LogManager.getLogger();
+    private final static Logger LOG = LoggerFactory.getLogger(LocalClipboard.class);
 
     NotepadWindow localWidow;
 
