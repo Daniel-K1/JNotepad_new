@@ -2,6 +2,8 @@ package com.danielk.jnotepad.gui;
 
 import com.danielk.jnotepad.data.LocalClipboard;
 import com.danielk.jnotepad.data.NotepadFile;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -18,6 +20,8 @@ public class NotepadPrompts {
     private File dir;
     private String fileName;
     private LocalClipboard clipboard;
+
+    private final static Logger LOG= LogManager.getLogger();
 
     public NotepadPrompts(NotepadFile notepadFile, LocalClipboard clipboard) {
         this.localFile = notepadFile;
@@ -111,7 +115,7 @@ public class NotepadPrompts {
                 notepadWindow.setTitle("JNotepad - " + fileName);
 
             } catch (IOException e) {
-                System.out.print("IO Error while saving the file");
+                LOG.fatal("IO Error while saving the file"+e.getMessage());
             }
         }
     }
@@ -121,7 +125,7 @@ public class NotepadPrompts {
         try{
             notepadWindow.getTextArea().print();
         } catch (PrinterException e) {
-            System.out.println("Error while printing: "+e.getMessage());
+            LOG.error("Error while printing: "+e.getMessage());
         }
 
     }

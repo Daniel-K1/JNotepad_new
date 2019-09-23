@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %highlight{%level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=blue} %logger{36} - %msg%n"
+                    disableAnsi="false"/>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+        <File name="File" fileName="output.log" bufferedIO="true">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %highlight{%level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=blue} %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="File"/>
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

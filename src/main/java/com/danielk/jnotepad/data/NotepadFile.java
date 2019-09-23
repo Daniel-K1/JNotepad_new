@@ -1,14 +1,16 @@
 package com.danielk.jnotepad.data;
 
 import com.danielk.jnotepad.gui.NotepadWindow;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 
 public class NotepadFile {
 
     private File selectedFile;
-
     private final NotepadWindow notepadWindow;
+    private final static Logger LOG= LogManager.getLogger();
 
     public NotepadFile(NotepadWindow notepadWindow) {
         this.notepadWindow = notepadWindow;
@@ -27,7 +29,7 @@ public class NotepadFile {
             notepadWindow.textArea.setCaretPosition(0);
 
         } catch (IOException e) {
-            System.out.print("IO Error while opening the file");
+            LOG.error("IO Error while opening the file: "+e.getMessage());
         }
     }
 

@@ -1,16 +1,19 @@
 package com.danielk.jnotepad.data;
 
 import com.danielk.jnotepad.gui.NotepadWindow;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.awt.AWTException;
-import java.awt.HeadlessException;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
+
 
 public class LocalClipboard {
+
+    private final static Logger LOG= LogManager.getLogger();
 
     NotepadWindow localWidow;
 
@@ -43,7 +46,7 @@ public class LocalClipboard {
             robot.keyRelease(KeyEvent.VK_CONTROL);
             robot.keyRelease(KeyEvent.VK_V);
         } catch (AWTException e) {
-            System.out.println("Exception in Local Clipboard->paste method: " + e.getMessage());
+            LOG.error("Exception in Local Clipboard->paste method: " + e);
         }
     }
 

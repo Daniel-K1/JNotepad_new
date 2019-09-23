@@ -1,5 +1,8 @@
 package com.danielk.jnotepad.gui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.swing.*;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -12,6 +15,8 @@ class NotepadLookAndFeelManager {
         JAVAMETAL,
         JAVAOCEAN
     }
+
+    private final static Logger LOG= LogManager.getLogger();
 
     static void setLookAndFeel(LookAndFeelTypes lookAndFeelType, NotepadWindow notepadWindow) {
 
@@ -47,7 +52,7 @@ class NotepadLookAndFeelManager {
             notepadWindow.setVisible(true);
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            LOG.error("Error while changing LookAndFeel: "+e.getMessage());
         }
     }
 }
