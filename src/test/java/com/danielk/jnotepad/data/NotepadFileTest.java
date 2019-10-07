@@ -1,45 +1,48 @@
 package com.danielk.jnotepad.data;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import com.danielk.jnotepad.gui.NotepadWindow;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.File;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class NotepadFileTest {
 
     private File selectedFile;
     private static final Logger LOG = LoggerFactory.getLogger(NotepadFileTest.class);
 
+    @BeforeEach
+    void setUp() {
+    }
+
+    //todo string null
+    //todo test sprawdzajacy czy strona kodowa zwracanego Stringa jest taka jak chcieliśmy
+
     @ParameterizedTest
+    @DisplayName("Each and every Enum in 'charsetNames' can be passed as parameter without exception thrown")
     @MethodSource("argumentFactory")
-    void openWithEncoding_parametrized(String charsetName) {
+    void openWithEncoding_parametrized(NotepadFile.CharsetNames charsetName) {
 
-        boolean ok = true;
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), charsetName));
-        } catch (IOException e) {
-            ok=false;
-            LOG.error("IO Error while opening the file in test method: " + e.getMessage());
-        }
+        NotepadWindow window = new NotepadWindow();
+        window.setVisible(false);
+        NotepadFile notepadFile = new NotepadFile(window);
+        selectedFile = new File(String.join(File.separator,"src","test","resources","testFile.txt"));
+        notepadFile.setSelectedFile(selectedFile);
+
+        assertDoesNotThrow(() -> notepadFile.openWithEncoding(charsetName));
     }
 
-    private static Stream<Arguments> argumentFactory() {
-        return Stream.of(
-                Arguments.of("Cp1250"),
-                Arguments.of("UTF8"),
-                Arguments.of("UTF16"),
-                Arguments.of("ASCII"),
-                Arguments.of("ISO8859_2")
-        );
-    }
+    private static Stream<NotepadFile.CharsetNames> argumentFactory() {
 
+        return Arrays.stream(NotepadFile.CharsetNames.values());
+    }
 }

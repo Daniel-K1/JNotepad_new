@@ -1,5 +1,7 @@
 package com.danielk.jnotepad.gui;
 
+import com.danielk.jnotepad.data.Find;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,8 +14,6 @@ class FindDialog extends JDialog {
     private JRadioButton isBackwardDirection = new JRadioButton();
     private JRadioButton isForwardDirection = new JRadioButton();
 
-    private int startIndex = -1;
-    private int endIndex = -1;
 
     private String lookFor;
 
@@ -64,21 +64,21 @@ class FindDialog extends JDialog {
                                         .addComponent(isCaseSensitive)
                                         .addComponent(caseSensitiveLabel)))
                         .addGroup(layout.createParallelGroup()
-                                .addComponent(find, 90,90,90)
-                                .addComponent(cancel,90,90,90))
+                                .addComponent(find, 90, 90, 90)
+                                .addComponent(cancel, 90, 90, 90))
         );
         layout.setVerticalGroup(
                 layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(findLabel)
                                 .addComponent(searchField, 20, 20, 20)
-                                .addComponent(find,28,28,28))
+                                .addComponent(find, 28, 28, 28))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(isBackwardDirection)
                                 .addComponent(isBackwardsLabel)
                                 .addComponent(isForwardDirection)
                                 .addComponent(isForwardLabel)
-                                .addComponent(cancel,28,28,28))
+                                .addComponent(cancel, 28, 28, 28))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(isCaseSensitive)
                                 .addComponent(caseSensitiveLabel)));
@@ -87,25 +87,9 @@ class FindDialog extends JDialog {
 
         find.addActionListener(ae -> {
 
-            if (startIndex < 0) {
-                startIndex = localTextArea.getSelectionStart();
-            }
-
-            String base = localTextArea.getText();
-            lookFor = searchField.getText();
-            endIndex = startIndex + searchField.getText().length();
-
-            if (!isCaseSensitive.isSelected()) {
-                lookFor = lookFor.toLowerCase();
-                base = base.toLowerCase();
-            }
-
-            if (isBackwardDirection.isSelected()) {
-                findTextBackwards(lookFor, base);
-            }
-
-            if (isForwardDirection.isSelected()) {
-                findTextForward(lookFor, base);
+            Find.find(localTextArea, searchField.getText(), isCaseSensitive.isSelected(), isForwardDirection.isSelected());
+            if (find.getText().equals("Find")) {
+                find.setText("Find next");
             }
         });
 
@@ -118,48 +102,4 @@ class FindDialog extends JDialog {
         setLocation(parent.getX() + 100, parent.getY() + 100);
         setVisible(true);
     }
-
-     private void findTextForward(String lookFor, String base) {
-
-        while (endIndex <= base.length()) {
-            if (base.substring(startIndex, endIndex).equals(lookFor)) {
-                localTextArea.select(startIndex, endIndex);
-                if (find.getText().equals("Find")) {
-                    find.setText("Find next");
-                }
-                startIndex++;
-                endIndex++;
-                return;
-            } else {
-                startIndex++;
-                endIndex++;
-            }
-        }
-    }
-
-     private void findTextBackwards(String lookFor, String base) {
-
-        if (endIndex > base.length()) {
-            do {
-                endIndex--;
-                startIndex--;
-            } while(endIndex!=base.length());
-        }
-
-        while (startIndex >= 0) {
-            if (base.substring(startIndex, endIndex).equals(lookFor)) {
-                localTextArea.select(startIndex, endIndex);
-                if (find.getText().equals("Find")) {
-                    find.setText("Find next");
-                }
-                startIndex--;
-                endIndex--;
-                return;
-            } else {
-                startIndex--;
-                endIndex--;
-            }
-        }
-    }
-
 }

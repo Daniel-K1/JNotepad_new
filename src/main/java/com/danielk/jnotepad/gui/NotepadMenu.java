@@ -129,7 +129,7 @@ public class NotepadMenu {
                         .build())
                 .withItem(MenuItemBuilder.menuItem("Text statistics")
                         .withToolTip("provides the following stats:lines, words and characters (including and excluding whitespaces")
-                        .withActionListener(ae -> new TextStatistics(notepadWindow))
+                        .withActionListener(ae -> new TextStatisticsDialog(notepadWindow))
                         .build())
                 .build();
 

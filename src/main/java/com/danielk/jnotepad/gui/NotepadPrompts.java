@@ -39,7 +39,9 @@ public class NotepadPrompts {
 
             if (!notepadWindow.isTextUpdated() || notepadWindow.notMistake()) {
                 localFile.setSelectedFile(chooser.getSelectedFile());
-                localFile.openWithEncoding("cp1250");
+
+                notepadWindow.openWithPrompt(NotepadFile.CharsetNames.CP_1250,localFile);
+
                 notepadWindow.setRadioPanelVisible();
                 notepadWindow.setTitle("JNotepad - " + chooser.getSelectedFile().getName());
                 notepadWindow.setLocalFile(localFile);
@@ -140,4 +142,6 @@ public class NotepadPrompts {
         }
 
     }
+
+
 }

@@ -15,10 +15,10 @@ public class LocalClipboard {
 
     private final static Logger LOG = LoggerFactory.getLogger(LocalClipboard.class);
 
-    NotepadWindow localWidow;
+    NotepadWindow localWindow;
 
-    public LocalClipboard(NotepadWindow localWidow) {
-        this.localWidow = localWidow;
+    public LocalClipboard(NotepadWindow localWindow) {
+        this.localWindow = localWindow;
     }
 
     public static void copy(String text) {
@@ -33,7 +33,7 @@ public class LocalClipboard {
     }
 
     public void delete() {
-        localWidow.getTextArea().replaceSelection("");
+        localWindow.getTextArea().replaceSelection("");
     }
 
     public static void paste() {
@@ -50,22 +50,19 @@ public class LocalClipboard {
         }
     }
 
-    public static String get() throws Exception {
-        Clipboard systemClipboard = getSystemClipboard();
-        DataFlavor dataFlavor = DataFlavor.stringFlavor;
-
-        if (systemClipboard.isDataFlavorAvailable(dataFlavor)) {
-            Object text = systemClipboard.getData(dataFlavor);
-            return (String) text;
-        }
-
-        return null;
-    }
+//    public static String get() throws Exception {
+//        Clipboard systemClipboard = getSystemClipboard();
+//        DataFlavor dataFlavor = DataFlavor.stringFlavor;
+//
+//        if (systemClipboard.isDataFlavorAvailable(dataFlavor)) {
+//            Object text = systemClipboard.getData(dataFlavor);
+//            return (String) text;
+//        }
+//
+//        return null;
+//    }
 
     public static Clipboard getSystemClipboard() {
-        Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
-        Clipboard systemClipboard = defaultToolkit.getSystemClipboard();
-
-        return systemClipboard;
+        return Toolkit.getDefaultToolkit().getSystemClipboard();
     }
 }
