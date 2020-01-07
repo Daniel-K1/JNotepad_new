@@ -4,13 +4,20 @@ import javax.swing.*;
 
 public class Find {
 
-    private static int startIndex = -1;
-    private static int endIndex = -1;
+    static int startIndex = -1;
+    static int endIndex = -1;
 
-
-    public static void find(JTextArea textArea, String lookForText, boolean caseSensitiveSelected, boolean forwardDirectionSelected) {
+    public static Selection find(JTextArea textArea, String lookForText,
+                                 boolean caseSensitiveSelected, boolean forwardDirectionSelected, boolean wrapSearchSelected) {
 
         JTextArea localTextArea=textArea;
+
+        int startIndex = -1;
+        int endIndex = -1;
+
+        if(localTextArea.getSelectedText()==null){
+           // startIndex=localTextArea.
+        }
 
         if (startIndex < 0) {
             startIndex = localTextArea.getSelectionStart();
@@ -30,6 +37,8 @@ public class Find {
         }else{
             findTextBackwards(lookFor, base, localTextArea);
         }
+
+        return new Selection(startIndex,endIndex);
     }
 
 

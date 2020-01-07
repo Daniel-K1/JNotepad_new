@@ -1,9 +1,14 @@
 package com.danielk.jnotepad.gui;
 
 import com.danielk.jnotepad.data.Find;
+import com.danielk.jnotepad.data.Selection;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 class FindDialog extends JDialog {
 
@@ -11,18 +16,20 @@ class FindDialog extends JDialog {
     private JTextField searchField = new JTextField(23);
     private JButton find = new JButton("Find");
     private JCheckBox isCaseSensitive = new JCheckBox();
+    private JCheckBox wrapSearch = new JCheckBox();
     private JRadioButton isBackwardDirection = new JRadioButton();
     private JRadioButton isForwardDirection = new JRadioButton();
 
 
     private String lookFor;
 
-    FindDialog(JFrame parent, JTextArea textArea) {
+    FindDialog(NotepadWindow parent, JTextArea textArea) {
 
         super(parent, "Find", true);
 
         JButton cancel = new JButton("Cancel");
         isCaseSensitive.setToolTipText("if unchecked - search for \"ABC\" results are ABC, abc, Abc etc.");
+        wrapSearch.setToolTipText("search starts over after reaches end of the text");
         searchField.setToolTipText("enter text to be searched for");
         find.setToolTipText("finds next occurrence of searched field (counting from cursor position)");
         cancel.setToolTipText("dispose current dialog window");
@@ -32,6 +39,7 @@ class FindDialog extends JDialog {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.localTextArea = textArea;
         JLabel caseSensitiveLabel = new JLabel("case sensitive");
+        JLabel wrapSearchLabel = new JLabel("wrap search");
         caseSensitiveLabel.setLabelFor(isCaseSensitive);
 
         isCaseSensitive.setSelected(true);
@@ -50,6 +58,8 @@ class FindDialog extends JDialog {
         JLabel isForwardLabel = new JLabel("search forward");
         JLabel findLabel = new JLabel("Find: ");
 
+        find.setEnabled(false);
+
         layout.setHorizontalGroup(
                 layout.createSequentialGroup()
                         .addComponent(findLabel)
@@ -62,7 +72,10 @@ class FindDialog extends JDialog {
                                         .addComponent(isForwardLabel))
                                 .addGroup(layout.createSequentialGroup()
                                         .addComponent(isCaseSensitive)
-                                        .addComponent(caseSensitiveLabel)))
+                                        .addComponent(caseSensitiveLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(wrapSearch)
+                                        .addComponent(wrapSearchLabel)))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(find, 90, 90, 90)
                                 .addComponent(cancel, 90, 90, 90))
@@ -81,13 +94,43 @@ class FindDialog extends JDialog {
                                 .addComponent(cancel, 28, 28, 28))
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(isCaseSensitive)
-                                .addComponent(caseSensitiveLabel)));
+                                .addComponent(caseSensitiveLabel))
+                        .addGroup(layout.createParallelGroup()
+                                .addComponent(wrapSearch)
+                                .addComponent(wrapSearchLabel)));
 
         mainPane.setLayout(layout);
 
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                enableButton();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                enableButton();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                enableButton();
+            }
+
+            public void enableButton() {
+                if (searchField.getText().equals("")) {
+                    find.setEnabled(false);
+                } else {
+                    find.setEnabled(true);
+                }
+            }
+        });
+
         find.addActionListener(ae -> {
 
-            Find.find(localTextArea, searchField.getText(), isCaseSensitive.isSelected(), isForwardDirection.isSelected());
+            Selection selection = Find.find(localTextArea, searchField.getText(),
+                    isCaseSensitive.isSelected(), isForwardDirection.isSelected(), wrapSearch.isSelected());
+
+            parent.getTextArea().setSelectionStart(selection.getStartIndex());
+            parent.getTextArea().setSelectionEnd(selection.getEndIndex());
+
             if (find.getText().equals("Find")) {
                 find.setText("Find next");
             }

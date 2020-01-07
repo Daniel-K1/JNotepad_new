@@ -222,4 +222,6 @@ public class NotepadWindow extends JFrame {
     public void setTextUpdated(boolean b) {
         textUpdated = b;
     }
+
+
 }

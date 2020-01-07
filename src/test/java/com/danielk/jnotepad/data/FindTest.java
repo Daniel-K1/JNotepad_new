@@ -29,7 +29,7 @@ class FindTest {
         int end = textArea.getText().length();
 
         while (currentPos <= end) {
-            Find.find(textArea, lookFor, true, true);
+            Find.find(textArea, lookFor, true, true, true);
 
             if (results.containsKey(textArea.getSelectionStart())) {
                 currentPos++;
@@ -61,7 +61,7 @@ class FindTest {
         int end = textArea.getText().length();
 
         while (currentPos <= end) {
-            Find.find(textArea, lookFor, Boolean.FALSE, Boolean.TRUE);
+            Find.find(textArea, lookFor, Boolean.FALSE, Boolean.TRUE, true);
 
             if (!(results.containsKey(textArea.getSelectionStart()))) {
                 results.put(textArea.getSelectionStart(), textArea.getSelectionEnd() - 1);
@@ -91,7 +91,7 @@ class FindTest {
         int end = textArea.getText().length();
 
         while (currentPos <= end) {
-            Find.find(textArea, lookFor, true, false);
+            Find.find(textArea, lookFor, true, false, true);
 
             if (results.containsKey(textArea.getSelectionStart())) {
                 currentPos++;
@@ -122,7 +122,7 @@ class FindTest {
         int end = textArea.getText().length();
 
         while (currentPos <= end) {
-            Find.find(textArea, lookFor, false, false);
+            Find.find(textArea, lookFor, false, false, true);
 
             if (!(results.containsKey(textArea.getSelectionStart()))) {
                 results.put(textArea.getSelectionStart(), textArea.getSelectionEnd() - 1);
@@ -154,7 +154,7 @@ class FindTest {
         int end = textArea.getText().length();
 
         while (currentPos <= end) {
-            Find.find(textArea, lookFor, Boolean.FALSE, Boolean.FALSE);
+            Find.find(textArea, lookFor, Boolean.FALSE, Boolean.FALSE, true);
 
             if (!(results.containsKey(textArea.getSelectionStart()))) {
                 results.put(textArea.getSelectionStart(), textArea.getSelectionEnd() - 1);
@@ -167,6 +167,5 @@ class FindTest {
         //todo dokonczyc
 
         assertEquals(reference, results);
-
     }
 }
